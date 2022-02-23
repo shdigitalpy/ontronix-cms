@@ -92,7 +92,9 @@ AUTHENTICATION_BACKENDS = [
 
 ALLOWED_HOSTS = [
     'http://localhost:3000',
-    'http://localhost:3030'
+    'http://localhost:3030',
+    'https://ontronix-cms.herokuapp.com/',
+    'ontronix-cms.herokuapp.com/'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = False
@@ -100,7 +102,9 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
-    'http://localhost:3030'
+    'http://localhost:3030',
+    'https://ontronix-cms.herokuapp.com/',
+    'ontronix-cms.herokuapp.com/'
 ]
 
 LOGIN_REDIRECT_URL = '/cms'
