@@ -1,0 +1,588 @@
+info:
+  description: ''
+  title: ''
+  version: ''
+openapi: 3.0.0
+paths:
+  /coupons/:
+    get:
+      operationId: coupons_list
+      tags:
+      - coupons
+    post:
+      operationId: coupons_create
+      tags:
+      - coupons
+  /coupons/{id}/:
+    delete:
+      operationId: coupons_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this coupon code.
+          title: ID
+          type: integer
+      tags:
+      - coupons
+    get:
+      operationId: coupons_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this coupon code.
+          title: ID
+          type: integer
+      tags:
+      - coupons
+    patch:
+      operationId: coupons_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this coupon code.
+          title: ID
+          type: integer
+      tags:
+      - coupons
+    put:
+      operationId: coupons_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this coupon code.
+          title: ID
+          type: integer
+      tags:
+      - coupons
+  /discounts/:
+    get:
+      operationId: discounts_list
+      tags:
+      - discounts
+    post:
+      operationId: discounts_create
+      tags:
+      - discounts
+  /discounts/{id}/:
+    delete:
+      operationId: discounts_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this discount.
+          title: ID
+          type: integer
+      tags:
+      - discounts
+    get:
+      operationId: discounts_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this discount.
+          title: ID
+          type: integer
+      tags:
+      - discounts
+    patch:
+      operationId: discounts_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this discount.
+          title: ID
+          type: integer
+      tags:
+      - discounts
+    put:
+      operationId: discounts_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this discount.
+          title: ID
+          type: integer
+      tags:
+      - discounts
+  /gallery/:
+    get:
+      operationId: gallery_list
+      tags:
+      - gallery
+    post:
+      operationId: gallery_create
+      tags:
+      - gallery
+  /gallery/{id}/:
+    delete:
+      operationId: gallery_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this gallery.
+          title: ID
+          type: integer
+      tags:
+      - gallery
+    get:
+      operationId: gallery_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this gallery.
+          title: ID
+          type: integer
+      tags:
+      - gallery
+    patch:
+      operationId: gallery_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this gallery.
+          title: ID
+          type: integer
+      tags:
+      - gallery
+    put:
+      operationId: gallery_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this gallery.
+          title: ID
+          type: integer
+      tags:
+      - gallery
+  /images/:
+    get:
+      operationId: images_list
+      tags:
+      - images
+    post:
+      operationId: images_create
+      tags:
+      - images
+  /images/{id}/:
+    delete:
+      operationId: images_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this images.
+          title: ID
+          type: integer
+      tags:
+      - images
+    get:
+      operationId: images_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this images.
+          title: ID
+          type: integer
+      tags:
+      - images
+    patch:
+      operationId: images_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this images.
+          title: ID
+          type: integer
+      tags:
+      - images
+    put:
+      operationId: images_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this images.
+          title: ID
+          type: integer
+      tags:
+      - images
+  /invoice-address/:
+    get:
+      operationId: invoice-address_list
+      tags:
+      - invoice-address
+    post:
+      operationId: invoice-address_create
+      tags:
+      - invoice-address
+  /invoice-address/{id}/:
+    delete:
+      operationId: invoice-address_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this invoice address.
+          title: ID
+          type: integer
+      tags:
+      - invoice-address
+    get:
+      operationId: invoice-address_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this invoice address.
+          title: ID
+          type: integer
+      tags:
+      - invoice-address
+    patch:
+      operationId: invoice-address_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this invoice address.
+          title: ID
+          type: integer
+      tags:
+      - invoice-address
+    put:
+      operationId: invoice-address_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this invoice address.
+          title: ID
+          type: integer
+      tags:
+      - invoice-address
+  /orders/:
+    get:
+      operationId: orders_list
+      tags:
+      - orders
+    post:
+      operationId: orders_create
+      tags:
+      - orders
+  /orders/{id}/:
+    delete:
+      operationId: orders_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this order.
+          title: ID
+          type: integer
+      tags:
+      - orders
+    get:
+      operationId: orders_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this order.
+          title: ID
+          type: integer
+      tags:
+      - orders
+    patch:
+      operationId: orders_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this order.
+          title: ID
+          type: integer
+      tags:
+      - orders
+    put:
+      operationId: orders_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this order.
+          title: ID
+          type: integer
+      tags:
+      - orders
+  /products/:
+    get:
+      operationId: products_list
+      tags:
+      - products
+    post:
+      operationId: products_create
+      tags:
+      - products
+  /products/{id}/:
+    delete:
+      operationId: products_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this product.
+          title: ID
+          type: integer
+      tags:
+      - products
+    get:
+      operationId: products_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this product.
+          title: ID
+          type: integer
+      tags:
+      - products
+    patch:
+      operationId: products_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this product.
+          title: ID
+          type: integer
+      tags:
+      - products
+    put:
+      operationId: products_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this product.
+          title: ID
+          type: integer
+      tags:
+      - products
+  /reviews/:
+    get:
+      operationId: reviews_list
+      tags:
+      - reviews
+    post:
+      operationId: reviews_create
+      tags:
+      - reviews
+  /reviews/{id}/:
+    delete:
+      operationId: reviews_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this review.
+          title: ID
+          type: integer
+      tags:
+      - reviews
+    get:
+      operationId: reviews_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this review.
+          title: ID
+          type: integer
+      tags:
+      - reviews
+    patch:
+      operationId: reviews_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this review.
+          title: ID
+          type: integer
+      tags:
+      - reviews
+    put:
+      operationId: reviews_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this review.
+          title: ID
+          type: integer
+      tags:
+      - reviews
+  /shipping-address/:
+    get:
+      operationId: shipping-address_list
+      tags:
+      - shipping-address
+    post:
+      operationId: shipping-address_create
+      tags:
+      - shipping-address
+  /shipping-address/{id}/:
+    delete:
+      operationId: shipping-address_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this shipping address.
+          title: ID
+          type: integer
+      tags:
+      - shipping-address
+    get:
+      operationId: shipping-address_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this shipping address.
+          title: ID
+          type: integer
+      tags:
+      - shipping-address
+    patch:
+      operationId: shipping-address_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this shipping address.
+          title: ID
+          type: integer
+      tags:
+      - shipping-address
+    put:
+      operationId: shipping-address_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this shipping address.
+          title: ID
+          type: integer
+      tags:
+      - shipping-address
+  /users/:
+    get:
+      operationId: users_list
+      tags:
+      - users
+    post:
+      operationId: users_create
+      tags:
+      - users
+  /users/{id}/:
+    delete:
+      operationId: users_delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this user.
+          title: ID
+          type: integer
+      tags:
+      - users
+    get:
+      operationId: users_read
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this user.
+          title: ID
+          type: integer
+      tags:
+      - users
+    patch:
+      operationId: users_partial_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this user.
+          title: ID
+          type: integer
+      tags:
+      - users
+    put:
+      operationId: users_update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: A unique integer value identifying this user.
+          title: ID
+          type: integer
+      tags:
+      - users
+servers:
+- url: ''

@@ -1,0 +1,54 @@
+{% extends 'base-cms.html' %}
+{% load static %}
+{% block title %}CMS PDF{% endblock %}
+
+{% block content %}
+
+		
+			<div class="flexbox">
+				<div class="h2">PDF Downloads</div>
+				
+			</div>
+
+			<div class="flexbox">
+				<a class="btn btn-secondary btn-sm mr-1" href="{% url 'cms_pdf_upload' %}">Erfassen</a>
+			</div>
+			
+
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+			    	<th scope="col"><br>ID</th>
+			    	<th scope="col"><br>Title</th>
+			    	<th scope="col">Alt</th>
+			    	<th scope="col">Datei</th>
+			    	<th scope="col">Bearbeiten</th>
+			       		      
+
+			    </tr>
+			  </thead>
+			  {% for data in pdf %}
+			  <tbody>
+			    <tr>
+			      <th scope="row">{{ data.id }}</th>
+			      <td>
+			      {{ data.name }}</form>
+			  		</td>
+			      <td>{{ data.alt }}</td>
+
+			      <td><a target="__blank" href="{{ data.file.url }}">{{ data.name }}.pdf</a></td>
+			      
+			    <td>
+
+			    	<a href="{% url 'cms_pdf_edit' data.pk %}"><i style="color:var(--red)" class="far fa-edit"></i></a>
+
+			    </td>
+			    </tr>
+			  </tbody>
+			  {% endfor %}
+
+			</table>
+
+			
+ {% endblock %}
+

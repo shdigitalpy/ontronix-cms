@@ -1,0 +1,32 @@
+{% extends 'base-cms.html' %}
+{% load static %}
+{% block title %}CMS Dashboard{% endblock %}
+
+{% block content %}
+
+		<br><br>
+		<h1>Willkommen</h1>
+		<p></p>
+
+		<div class="flexbox">
+				
+				
+
+				<a class="flexelement" href="{% url 'cms_kunden' %}">Users</a>
+				
+				<a class="flexelement" href="{% url 'cms_pages' %}">Pages
+				</a>
+
+				<a class="flexelement" href="{% url 'cms_pdf' %}">Downloads
+				</a>
+
+			
+
+				
+		</div>
+  
+</div>
+
+
+ {% endblock %}
+

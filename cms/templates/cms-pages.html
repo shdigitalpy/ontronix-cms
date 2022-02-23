@@ -1,0 +1,55 @@
+{% extends 'base-cms.html' %}
+{% load static %}
+{% block title %}CMS Pages{% endblock %}
+
+{% block content %}
+
+		
+			<div class="flexbox">
+				<div class="h2">Pages</div>
+
+				
+
+			</div>
+			<div class="flexbox">
+				<a class="btn btn-secondary btn-sm mr-1" href="">Erfassen</a>
+			</div>
+
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+
+			    	<th scope="col">ID</th>
+			    	<th scope="col">Name</th>
+			      <th scope="col">Sections</th>
+			    	
+			    	
+			    	
+			     
+			     
+			    </tr>
+			  </thead>
+			  {% for data in pages %}
+			  <tbody>
+			    <tr>
+			    	<th>{{ data.id }}</th>
+			    	<td>{{ data.name }}</td>
+			    	<td>
+
+			    	{% for sections in data.section.all %}
+
+			    	{{ sections.name }} <i style="color:var(--red)" class="far fa-edit"></i><br>
+			    	{% endfor %}
+
+
+			    	</td>
+			    	
+			      
+			    </tr>
+			    
+			  </tbody>
+			  {% endfor %}
+
+			</table>
+
+ {% endblock %}

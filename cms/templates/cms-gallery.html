@@ -1,0 +1,57 @@
+{% extends 'base-cms.html' %}
+{% load static %}
+{% block title %}CMS Kunden{% endblock %}
+
+{% block content %}
+
+		
+			<div class="flexbox">
+				<div class="h2">Gallery Images</div>
+				
+			</div>
+						
+
+
+						<a class="btn btn-primary" href="{% url 'cms_gallery_image_add' product.pk %}">Bild hinzufügen</a>
+
+						<button class="btn btn-danger btn-exit"><a href="{% url 'cms_produkte' %}">Zurück <span class="fas fa-times"></span></a></button>
+
+			<div class="flexbox">
+				
+				
+			</div>
+
+			
+
+			  	<div style="display: flex;">
+			  		{% for gallery in gallery %}
+			    
+			    <div style="width:500px;background:var(--grey);padding:3rem;display:flex;justify-content:space-between;">
+
+			    	
+			      
+			      {{ gallery.pk }}
+			      
+			      	{% if gallery.image %}
+			      	<img style="max-width:60%;" src="{{ gallery.image.url }}">
+			      	{% else %}
+			      	{% endif %}
+			  		
+
+			     
+			     {{ gallery.alt }}
+			      
+			      <a href="{% url 'cms_gallery_image_delete' product.id gallery.id %}"><i style="color:var(--red)" class="far fa-trash-alt"></i>
+					 </a>
+			   
+			    </div>
+			    </div>
+			     {% endfor %}
+			  
+			
+		
+		
+
+			
+ {% endblock %}
+

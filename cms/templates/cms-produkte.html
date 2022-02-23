@@ -1,0 +1,73 @@
+{% extends 'base-cms.html' %}
+{% load static %}
+{% block title %}CMS Produkte{% endblock %}
+
+{% block content %}
+
+		
+			<div class="flexbox">
+				<div class="h2">Produkte</div>
+
+			
+
+			</div>
+			<div class="flexbox">
+				<a class="btn btn-secondary btn-sm mr-1" href="{% url 'cms_produkte_erfassen' %}">Erfassen</a>
+			</div>
+
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+
+			    	<th scope="col">Artikel-Nr.</th>
+			    	<th scope="col">Name</th>
+			    	<th scope="col">Titelbild</th>
+			      <th scope="col">Galerie</th>
+			    	
+			    	
+			     
+			      <th scope="col">Preis</th>
+			      
+			      <th scope="col">Sortierung</th>
+			      <th scope="col">Bearbeiten</th>
+			      <th scope="col">Löschen</th>
+			     
+			     
+			    </tr>
+			  </thead>
+			  {% for data in produkte %}
+			  <tbody>
+			    <tr>
+
+			    	<th>{{ data.id }}</th>
+			    	<td>
+			    		{{ data.name }}
+			      </td>
+
+			    	<td>
+			    		<img style="max-width:150px" src="{{ data.thumbnail.url }}" alt="{{ data.thumbnail_alt }}">
+			      </td>
+			      <td>
+			      	<a href=""><i style="color:var(--black);font-size:1.8rem;" class="fas fa-images"></i></a>
+			      </td>
+			    	
+			      <td>CHF {{ data.price|floatformat:2 }}</td>
+			      
+			      
+			      <td>{{ data.sort }}</td>
+			      <td>
+			      	<a href="{% url 'cms_produkte_bearbeiten' data.id %}"><i style="color:var(--red)" class="far fa-edit"></i>
+					 </a>
+					 </td>
+  					<td>
+  					<a href="{% url 'cms_produkte_löschen' data.id %}"><i style="color:var(--red)" class="far fa-trash-alt"></i>
+					 </a>
+					</td> 
+			    </tr>
+			    
+			  </tbody>
+			  {% endfor %}
+
+			</table>
+
+ {% endblock %}

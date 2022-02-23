@@ -1,0 +1,50 @@
+{% extends 'base-cms.html' %}
+{% load static %}
+{% block title %}CMS Kunden{% endblock %}
+
+{% block content %}
+
+		
+			<div class="flexbox">
+				<div class="h2">Kunden</div>
+				
+			</div>
+			
+
+			<div class="flexbox">
+				
+				
+			</div>
+
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+			    	<th scope="col"><br>ID</th>
+			    	<th scope="col"><br>Benutzer</th>
+			    	<th scope="col">E-Mail</th>
+			       	<th scope="col">Adresse</th>
+			     	  <th scope="col">Bearbeiten</th>
+			     			      
+
+			    </tr>
+			  </thead>
+			  {% for data in user1 %}
+			  <tbody>
+			    <tr>
+			      <th scope="row">{{ data.pk }}</th>
+			      <td>
+			      {{ data.username }}</form>
+			  		</td>
+			      <td>{{ data.email }}</td>
+			      <td></td>
+			      <td></td>
+			    
+			    </tr>
+			  </tbody>
+			  {% endfor %}
+
+			</table>
+
+			
+ {% endblock %}
+
