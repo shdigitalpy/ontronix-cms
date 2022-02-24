@@ -29,6 +29,12 @@ urlpatterns = [
     path('cms/produkte/gallery/add/<int:pk>', views.cms_gallery_image_add, name='cms_gallery_image_add'),
     path('cms/produkte/gallery/löschen/<int:ppk>/<int:pk>', views.cms_gallery_image_delete, name='cms_gallery_image_delete'),
 
+    #service
+    path('cms/service', views.cms_service, name='cms_service'),
+    path('cms/service/erfassen', views.cms_service_erfassen, name='cms_service_erfassen'),
+    path('cms/service/bearbeiten/<int:pk>', views.cms_service_bearbeiten, name='cms_service_bearbeiten'),
+    path('cms/service/löschen/<int:pk>', views.cms_service_löschen, name='cms_service_löschen'),
+
     #orders
     path('cms/bestellungen', views.cms_orders, name='cms_orders'),
 

@@ -91,6 +91,25 @@ class ProductSerializer(serializers.ModelSerializer):
             'meta_description',
             'price',
             'sort',
+            'short_description'
+        
+            )
+
+
+class ServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Service
+        fields = (
+            'id',
+            'name',
+            'slug',
+            'thumbnail',
+            'thumbnail_alt',
+            'meta_title',
+            'meta_description',
+            'price',
+            'sort',
+            'short_description'
         
             )
 

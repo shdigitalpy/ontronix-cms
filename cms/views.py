@@ -107,6 +107,8 @@ def cms_pages(request):
 
 
 
+#Produkte
+
 @staff_member_required
 def cms_produkte(request):
 	category = ' '
@@ -181,6 +183,71 @@ def cms_produkte_löschen(request, pk):
 	eintrag.delete()
 	messages.info(request, "Das Produkt wurde gelöscht.")
 	return redirect("cms_produkte")	
+
+#Produkte END
+
+
+#Service
+
+@staff_member_required
+def cms_service(request):
+	service = Service.objects.all()
+			
+
+	context = {
+		'service': service,
+	 }
+	return render(request, 'cms-service.html', context)
+
+@login_required
+def cms_service_erfassen(request):
+	if request.method == "POST":
+		form = ServiceForm(request.POST or None, request.FILES or None)
+		if form.is_valid():
+			form.save()	
+			return redirect('cms_service')
+
+		else:
+			messages.error(request, "Error")
+
+	else: 
+		form = ServiceForm()
+
+	context = {
+		'form': form,
+				}
+	return render(request, 'cms-service-erfassen.html', context)
+
+@login_required
+def cms_service_bearbeiten(request, pk):
+	service = get_object_or_404(Service, pk=pk)
+	
+	if request.method == "POST":
+		form = ServiceForm(request.POST or None, request.FILES or None, instance=service)
+		if form.is_valid():
+				form.save()					
+				return redirect('cms_service')
+
+		else:
+			messages.error(request, "Error")
+	else: 
+		form = ServiceForm(request.POST or None, request.FILES or None, instance=service)
+	context = {
+		'form': form,
+		'service': service,
+		
+				}
+	return render(request, 'cms-service-bearbeiten.html', context)
+
+@login_required
+def cms_service_löschen(request, pk):
+	eintrag = get_object_or_404(Service, pk=pk)
+	eintrag.delete()
+	messages.info(request, "Die Dienstleistung wurde gelöscht.")
+	return redirect("cms_service")	
+
+
+#Service END
 
 
 @login_required

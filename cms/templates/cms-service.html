@@ -1,0 +1,65 @@
+{% extends 'base-cms.html' %}
+{% load static %}
+{% block title %}CMS Service{% endblock %}
+
+{% block content %}
+
+		
+			<div class="flexbox">
+				<div class="h2">Dienstleistungen</div>
+
+			
+
+			</div>
+			<div class="flexbox">
+				<a class="btn btn-secondary btn-sm mr-1" href="{% url 'cms_service_erfassen' %}">Erfassen</a>
+			</div>
+
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+
+			    	<th scope="col">Artikel-Nr.</th>
+			    	<th scope="col">Name</th>
+			    	<th scope="col">Titelbild</th>    	
+			    
+			      
+			      
+			      <th scope="col">Sortierung</th>
+			      <th scope="col">Bearbeiten</th>
+			      <th scope="col">Löschen</th>
+			     
+			     
+			    </tr>
+			  </thead>
+			  {% for data in service %}
+			  <tbody>
+			    <tr>
+
+			    	<th>{{ data.id }}</th>
+			    	<td>
+			    		{{ data.name }}
+			      </td>
+
+			    	<td>
+			    		<img style="max-width:150px" src="{{ data.thumbnail.url }}" alt="{{ data.thumbnail_alt }}">
+			      </td>
+			     
+			      
+			      <td>{{ data.sort }}</td>
+			      <td>
+			      	<a href="{% url 'cms_service_bearbeiten' data.pk %}"><i style="color:var(--red)" class="far fa-edit"></i>
+					 </a>
+					 </td>
+  					<td>
+  					<a href="{% url 'cms_service_löschen' data.pk %}"><i style="color:var(--red)" class="far fa-trash-alt"></i>
+					 </a>
+					</td> 
+			    </tr>
+			    
+			  </tbody>
+			  {% endfor %}
+
+			</table>
+
+ {% endblock %}

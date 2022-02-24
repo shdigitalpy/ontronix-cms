@@ -15,6 +15,10 @@ COUNTRY_CHOICES = [
 
 
 class ProduktForm(forms.ModelForm):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['thumbnail'].required = True
+
 	class Meta:
 		model = Product
 		fields = (
@@ -38,6 +42,9 @@ class ProduktForm(forms.ModelForm):
 			'meta_description' : "SEO-Beschrieb",
 			'price' : "Preis",
 			'sort' : "Sortierung",
+			'short_description': "Beschrieb",
+			'thumbnail' : "Bild",
+			'thumbnail_alt' : "Bildbeschrieb",
 
 			
 		}
@@ -45,9 +52,16 @@ class ProduktForm(forms.ModelForm):
 		widgets = {
 			'name': forms.TextInput(attrs={
 				'class': 'form-control',
+				'required': 'true'
 				}),
 			'slug': forms.TextInput(attrs={
 				'class': 'form-control',
+				'required': 'true'
+				}),
+
+			'sort': forms.NumberInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
 				}),
 			
 			
@@ -57,10 +71,69 @@ class ProduktForm(forms.ModelForm):
 			'meta_description': forms.TextInput(attrs={
 				'class': 'form-control',
 				}),
+
+
+			'thumbnail_alt': forms.TextInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+			
+
+			'short_description': forms.Textarea(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
 			
 		}
 
 
+class ServiceForm(forms.ModelForm):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['thumbnail'].required = True
+
+	class Meta:
+		model = Service
+		fields = (
+			'sort',
+			'name',
+			'thumbnail', 
+			'thumbnail_alt',
+			'short_description'
+			
+			)
+
+		labels = {
+			'name': "Name",
+			'short_description': "Beschrieb",
+			'thumbnail' : "Bild",
+			'thumbnail_alt' : "Bildbeschrieb",
+			'sort' : "Sortierung",
+
+			
+		}
+
+		widgets = {
+			'name': forms.TextInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+
+			'sort': forms.NumberInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+			'thumbnail_alt': forms.TextInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+
+			'short_description': forms.Textarea(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+	
+		}
 
 class FileForm(forms.ModelForm):
 	class Meta:
@@ -91,8 +164,6 @@ class FileForm(forms.ModelForm):
 			'alt': forms.TextInput(attrs={
 				'class': 'form-control',
 				}),
-
-
 
 		}
 

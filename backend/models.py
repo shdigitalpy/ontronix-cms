@@ -24,7 +24,7 @@ class Gallery(models.Model):
 
 class ImageModul(models.Model):
 	name = models.CharField(max_length=255, null=True, blank=True,)
-	image = models.ImageField(null=True, blank=True)
+	image = models.ImageField(null=True, blank=True, upload_to="image_modul")
 	alt = models.CharField(max_length=255, null=True, blank=True,)
 
 	def __str__(self):
@@ -42,7 +42,7 @@ class TextImageModul(models.Model):
 	name = models.CharField(max_length=255, null=True, blank=True,)
 	text = models.TextField(max_length=2000, null=True, blank=True,)
 	text_foreign = models.TextField(max_length=2000, null=True, blank=True,)
-	image = models.ImageField(null=True, blank=True)
+	image = models.ImageField(null=True, blank=True, upload_to="image_text_modul")
 	link = models.SlugField(max_length=255,null=True, blank=True,)
 
 	def __str__(self):
@@ -85,15 +85,29 @@ class Product(models.Model):
 	meta_description = models.CharField(max_length=255, null=True, blank=True,)
 	price = models.FloatField(null=True, blank=True,)
 	sort = models.IntegerField(null=True, blank=True)
+	short_description = models.TextField(max_length=2000, null=True, blank=True,)
+
+	def __str__(self):
+		return self.name
+
+class Service(models.Model):
+	name = models.CharField(max_length=255, null=True, blank=True,)
+	slug = models.SlugField(max_length=255,null=True, blank=True,)
+	thumbnail = models.ImageField(null=True, blank=True, upload_to="service")
+	thumbnail_alt = models.CharField(max_length=255, null=True, blank=True,)
+	meta_title = models.CharField(max_length=255, null=True, blank=True,)
+	meta_description = models.CharField(max_length=255, null=True, blank=True,)
+	price = models.FloatField(null=True, blank=True,)
+	short_description = models.TextField(max_length=2000, null=True, blank=True,)
+
+	sort = models.IntegerField(null=True, blank=True)
 
 	def __str__(self):
 		return self.name
 
 
 
-		
-
-
+	
 	
 
 

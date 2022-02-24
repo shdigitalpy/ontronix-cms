@@ -10,7 +10,7 @@ admin.site.register(Product)
 admin.site.register(ImageModul)
 admin.site.register(TextModul)
 admin.site.register(TextImageModul)
-
+admin.site.register(Service)
 
 admin.site.site_header = 'API Center'                    # default: "Django Administration"
 admin.site.index_title = 'Übersicht Module'                 # default: "Site administration"
