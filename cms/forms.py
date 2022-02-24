@@ -135,6 +135,72 @@ class ServiceForm(forms.ModelForm):
 	
 		}
 
+
+class ModuleTextForm(forms.ModelForm):
+	class Meta:
+		model = TextModul
+		fields = (
+			
+			'name',
+			'text',
+			'text_foreign'
+
+			)
+
+		widgets = {
+
+		'name': forms.TextInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+
+		'text': forms.TextInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+
+		'text_foreign': forms.TextInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+		}
+
+class ModuleImageForm(forms.ModelForm):
+	class Meta:
+		model = ImageModul
+		fields = (
+			
+			'__all__'
+
+			)
+
+		widgets = {
+
+		'name': forms.TextInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+		}
+
+class ModuleImageTextForm(forms.ModelForm):
+	class Meta:
+		model = TextImageModul
+		fields = (
+			
+			'__all__'
+
+			)
+
+		widgets = {
+
+		'name': forms.TextInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+		}
+
+
+
 class FileForm(forms.ModelForm):
 	class Meta:
 		model = File

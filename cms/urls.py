@@ -21,7 +21,7 @@ urlpatterns = [
     path('cms/pages', views.cms_pages, name='cms_pages'),
     path('cms/pages/sections/<int:pk>', views.cms_section_detail, name="cms_section_detail"),
     path('cms/pages/sections/modules/<int:pk>/<str:module>/<int:section_pk>', views.cms_module_detail, name="cms_module_detail"),
-
+    path('cms/pages/sections/modules/bearbeiten/<int:pk>/<str:module>/<int:section_pk>/', views.cms_module_bearbeiten, name="cms_module_bearbeiten"),
 
     #products
     path('cms/produkte', views.cms_produkte, name='cms_produkte'),

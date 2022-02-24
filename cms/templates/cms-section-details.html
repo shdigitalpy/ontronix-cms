@@ -6,7 +6,7 @@
 
 		
 			<div class="flexbox">
-				<div class="h2">Section Details</div>
+				<div class="h2">Section <strong>{{ section.name }}</strong></div>
 
 				
 
@@ -20,8 +20,9 @@
 			    <tr>
 
 			    	<th scope="col">ID</th>
-			    	<th scope="col">Name</th>
-			      <th scope="col">Module</th>
+			    	<th scope="col">Modul 1</th>
+			      <th scope="col">Modul 2</th>
+			      <th scope="col">Modul 3</th>
 			    	
 			     
 			    </tr>
@@ -29,15 +30,20 @@
 			
 			  <tbody>
 			    <tr>
-			    	<th>{{ section.id }}</th>
-			    	<td>{{ section.name }}</td>
-			    	<td>
+			    	
 
 			    	{% for x in section.text.all %}
 
-			    	{{ x.name }} <a href="{% url 'cms_module_detail' x.id 'text_module' section.id %}"><i style="color:var(--red)" class="far fa-edit"></i></a><br><br>
-			    	
+			    	<td>{{ x.id }}</td>
+
+			    	<td>
+			    	{{ x.name }} <a href="{% url 'cms_module_detail' x.id 'text_module' section.id %}"><i style="color:var(--red)" class="far fa-edit"></i></a>
+
+			    	</td>
+
 			    	{% endfor %}
+
+			    	<td>
 
 			    	{% for x in section.image.all %}
 
@@ -45,15 +51,20 @@
 			    	
 			    	{% endfor %}
 
+			    	</td>
+
+
+			    	<td>
+
 			    	{% for x in section.image_text.all %}
 
 			    	{{ x.name }} <a href="{% url 'cms_module_detail' x.id 'text_image_module' section.id %}"><i style="color:var(--red)" class="far fa-edit"></i></a><br><br>
 			    	
 			    	{% endfor %}
-
-
-
 			    	</td>
+
+
+			    	
 			    	
 			      
 			    </tr>

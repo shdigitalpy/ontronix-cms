@@ -131,9 +131,66 @@ def cms_module_detail(request, pk, module, section_pk):
 
 	context = {
 	"module_final" : module_final,
-	'section_pk' : section_pk
+	'section_pk' : section_pk,
+	'module' : module,
 	}
 	return render(request, 'cms-module-detail.html', context)
+
+@login_required
+def cms_module_bearbeiten(request, pk, module, section_pk):
+	
+	if module == 'text_module':
+		module_final = get_object_or_404(TextModul, pk=pk)
+
+	elif module == 'image_module': 
+		module_final = get_object_or_404(ImageModul, pk=pk)
+
+	elif module == 'text_image_module': 
+		module_final = get_object_or_404(TextImageModul, pk=pk)
+
+	else:
+		print('error')
+	
+	if request.method == "POST":
+		if module == 'text_module':
+			form = ModuleTextForm(request.POST or None, request.FILES or None, instance=module_final)
+
+		elif module == 'image_module': 
+			form = ModuleImageForm(request.POST or None, request.FILES or None, instance=module_final)
+
+		elif module == 'text_image_module': 
+			form = ModuleImageTextForm(request.POST or None, request.FILES or None, instance=module_final)
+
+		else:
+			print('error')
+		if form.is_valid():
+				form.save()					
+				return redirect('cms_module_detail', pk=pk, module=module, section_pk=section_pk)
+
+		else:
+			messages.error(request, "Error")
+	else: 
+		if module == 'text_module':
+			form = ModuleTextForm(request.POST or None, request.FILES or None, instance=module_final)
+
+		elif module == 'image_module': 
+			form = ModuleImageForm(request.POST or None, request.FILES or None, instance=module_final)
+
+		elif module == 'text_image_module': 
+			form = ModuleImageTextForm(request.POST or None, request.FILES or None, instance=module_final)
+
+		else:
+			print('error')
+
+
+	context = {
+		'form': form,
+		'module': module,
+		'section_pk': section_pk,
+		'pk' : pk,
+		
+				}
+	return render(request, 'cms-module-bearbeiten.html', context)
 
 #Produkte
 

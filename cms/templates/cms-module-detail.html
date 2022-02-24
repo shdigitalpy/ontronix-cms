@@ -6,10 +6,7 @@
 
 		
 			<div class="flexbox">
-				<div class="h2">Module Details</div>
-
-				
-
+				<div class="h2">Module {{ module_final }} Typ: {{ module }}</div>
 			</div>
 			<div class="flexbox">
 				<a class="btn btn-secondary btn-sm mr-1" href="{% url 'cms_section_detail' section_pk %}">Zurück</a>
@@ -20,43 +17,62 @@
 			    <tr>
 
 			    	<th scope="col">ID</th>
-			    	<th scope="col">Name</th>
+			    	{% if module == 'text_module' or module == 'text_image_module' %}
 			      <th scope="col">Text</th>
 			       <th scope="col">Foreign Text</th>
+			       {% endif %}
+
+			       {% if module == 'image_module' or module == 'text_image_module' %}
 			       <th scope="col">Image Name</th>
 			       <th scope="col">Image</th>
+			       <th scope="col">Bearbeiten</th>
+
+			       {% endif %}
 			    	
-			     
 			    </tr>
 			  </thead>
 			
 			  <tbody>
 			    <tr>
-			    	<th>{{ module_final.id }}</th>
-			    	<td>{{ module_final.name }}</td>
+			    	<td>{{ module_final.id }}</td>
+			   
+			    	{% if module == 'image_module' or module == 'text_image_module' %}
+
 			    	<td>
 
-			    		{{ module_final.text }}
+			    		{{ module_final.name }} 
 			    	
 			    	</td>
 
 			    	<td>
 
-			    		{{ module_final.text_foreign }}
+			    		<img style="max-width:150px" src="{{ module_final.image.url }}" alt="{{ module_final.name }}"> 
+			    	
+			    	</td>
+
+			    	{% endif %}
+
+
+			    	{% if module == 'text_module' or module == 'text_image_module' %}
+
+			    	<td>
+
+			    		{{ module_final.text }} 
+					 </a>
 			    	
 			    	</td>
 
 			    	<td>
 
-			    		{{ module_final.name }}
+			    		{{ module_final.text_foreign }} 
 			    	
 			    	</td>
 
-			    	<td>
+			    	{% endif %}
 
-			    		<img style="max-width:150px" src="{{ module_final.image.url }}" alt="{{ module_final.name }}">
+			    	<td><a href="{% url 'cms_module_bearbeiten' module_final.id module section_pk %}"><i style="color:var(--red)" class="far fa-edit"></td>
+
 			    	
-			    	</td>
 			    	
 			      
 			    </tr>

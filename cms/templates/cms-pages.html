@@ -36,7 +36,7 @@
 
 			    	{% for x in data.section.all %}
 
-			    	{{ x.name }} <a href="{% url 'cms_section_detail' x.id %}"><i style="color:var(--red)" class="far fa-edit"></i></a><br>
+			    	{{ x.id }} / {{ x.name }} <a href="{% url 'cms_section_detail' x.id %}"><i style="color:var(--red)" class="far fa-edit"></i></a><br>
 			    	{% endfor %}
 
 
