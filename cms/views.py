@@ -105,7 +105,35 @@ def cms_pages(request):
 	}
 	return render(request, 'cms-pages.html', context)
 
+@staff_member_required
+def cms_section_detail(request, pk):
+	section = get_object_or_404(Section, pk=pk)
 
+	context = {
+	"section" : section,
+	}
+	return render(request, 'cms-section-details.html', context)
+
+@staff_member_required
+def cms_module_detail(request, pk, module, section_pk):
+
+	if module == 'text_module':
+		module_final = get_object_or_404(TextModul, pk=pk)
+
+	elif module == 'image_module': 
+		module_final = get_object_or_404(ImageModul, pk=pk)
+
+	elif module == 'text_image_module': 
+		module_final = get_object_or_404(TextImageModul, pk=pk)
+
+	else:
+		print('Error')
+
+	context = {
+	"module_final" : module_final,
+	'section_pk' : section_pk
+	}
+	return render(request, 'cms-module-detail.html', context)
 
 #Produkte
 

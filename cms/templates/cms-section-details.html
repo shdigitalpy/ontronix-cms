@@ -1,0 +1,65 @@
+{% extends 'base-cms.html' %}
+{% load static %}
+{% block title %}CMS Section Details{% endblock %}
+
+{% block content %}
+
+		
+			<div class="flexbox">
+				<div class="h2">Section Details</div>
+
+				
+
+			</div>
+			<div class="flexbox">
+				<a class="btn btn-secondary btn-sm mr-1" href="{% url 'cms_pages' %}">Zurück</a>
+			</div>
+
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+
+			    	<th scope="col">ID</th>
+			    	<th scope="col">Name</th>
+			      <th scope="col">Module</th>
+			    	
+			     
+			    </tr>
+			  </thead>
+			
+			  <tbody>
+			    <tr>
+			    	<th>{{ section.id }}</th>
+			    	<td>{{ section.name }}</td>
+			    	<td>
+
+			    	{% for x in section.text.all %}
+
+			    	{{ x.name }} <a href="{% url 'cms_module_detail' x.id 'text_module' section.id %}"><i style="color:var(--red)" class="far fa-edit"></i></a><br><br>
+			    	
+			    	{% endfor %}
+
+			    	{% for x in section.image.all %}
+
+			    	{{ x.name }} <a href="{% url 'cms_module_detail' x.id 'image_module' section.id %}"><i style="color:var(--red)" class="far fa-edit"></i></a><br><br>
+			    	
+			    	{% endfor %}
+
+			    	{% for x in section.image_text.all %}
+
+			    	{{ x.name }} <a href="{% url 'cms_module_detail' x.id 'text_image_module' section.id %}"><i style="color:var(--red)" class="far fa-edit"></i></a><br><br>
+			    	
+			    	{% endfor %}
+
+
+
+			    	</td>
+			    	
+			      
+			    </tr>
+			    
+			  </tbody>
+
+			</table>
+
+ {% endblock %}

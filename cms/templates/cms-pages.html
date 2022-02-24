@@ -11,9 +11,7 @@
 				
 
 			</div>
-			<div class="flexbox">
-				<a class="btn btn-secondary btn-sm mr-1" href="">Erfassen</a>
-			</div>
+			
 
 			<table class="table table-striped">
 			  <thead>
@@ -36,9 +34,9 @@
 			    	<td>{{ data.name }}</td>
 			    	<td>
 
-			    	{% for sections in data.section.all %}
+			    	{% for x in data.section.all %}
 
-			    	{{ sections.name }} <i style="color:var(--red)" class="far fa-edit"></i><br>
+			    	{{ x.name }} <a href="{% url 'cms_section_detail' x.id %}"><i style="color:var(--red)" class="far fa-edit"></i></a><br>
 			    	{% endfor %}
 
 

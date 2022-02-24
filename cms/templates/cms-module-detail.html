@@ -1,0 +1,68 @@
+{% extends 'base-cms.html' %}
+{% load static %}
+{% block title %}CMS Module Details{% endblock %}
+
+{% block content %}
+
+		
+			<div class="flexbox">
+				<div class="h2">Module Details</div>
+
+				
+
+			</div>
+			<div class="flexbox">
+				<a class="btn btn-secondary btn-sm mr-1" href="{% url 'cms_section_detail' section_pk %}">Zurück</a>
+			</div>
+
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+
+			    	<th scope="col">ID</th>
+			    	<th scope="col">Name</th>
+			      <th scope="col">Text</th>
+			       <th scope="col">Foreign Text</th>
+			       <th scope="col">Image Name</th>
+			       <th scope="col">Image</th>
+			    	
+			     
+			    </tr>
+			  </thead>
+			
+			  <tbody>
+			    <tr>
+			    	<th>{{ module_final.id }}</th>
+			    	<td>{{ module_final.name }}</td>
+			    	<td>
+
+			    		{{ module_final.text }}
+			    	
+			    	</td>
+
+			    	<td>
+
+			    		{{ module_final.text_foreign }}
+			    	
+			    	</td>
+
+			    	<td>
+
+			    		{{ module_final.name }}
+			    	
+			    	</td>
+
+			    	<td>
+
+			    		<img style="max-width:150px" src="{{ module_final.image.url }}" alt="{{ module_final.name }}">
+			    	
+			    	</td>
+			    	
+			      
+			    </tr>
+			    
+			  </tbody>
+
+			</table>
+
+ {% endblock %}
