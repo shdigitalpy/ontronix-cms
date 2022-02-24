@@ -19,12 +19,42 @@ class Gallery(models.Model):
 	image = models.ImageField(null=True, blank=True)
 	alt = models.CharField(max_length=255, null=True, blank=True,)
 
-	def img_alt(self):
-		return self.title + ' // ' + self.alt
+	def __str__(self):
+		return self.alt
+
+class ImageModul(models.Model):
+	name = models.CharField(max_length=255, null=True, blank=True,)
+	image = models.ImageField(null=True, blank=True)
+	alt = models.CharField(max_length=255, null=True, blank=True,)
+
+	def __str__(self):
+		return self.name
+
+class TextModul(models.Model):
+	name = models.CharField(max_length=255, null=True, blank=True,)
+	text = models.TextField(max_length=2000, null=True, blank=True,)
+	text_foreign = models.TextField(max_length=2000, null=True, blank=True,)
+
+	def __str__(self):
+		return self.name
+
+class TextImageModul(models.Model):
+	name = models.CharField(max_length=255, null=True, blank=True,)
+	text = models.TextField(max_length=2000, null=True, blank=True,)
+	text_foreign = models.TextField(max_length=2000, null=True, blank=True,)
+	image = models.ImageField(null=True, blank=True)
+	link = models.SlugField(max_length=255,null=True, blank=True,)
+
+	def __str__(self):
+		return self.name
+
 
 class Section(models.Model):
 	name = models.CharField(max_length=255, null=True, blank=True,)
-	text = models.TextField(max_length=2000, null=True, blank=True,)
+	sort = models.IntegerField(null=True, blank=True)
+	text = models.ManyToManyField(TextModul, related_name='section_text', blank=True)
+	image = models.ManyToManyField(ImageModul, related_name='section_image', blank=True)
+	image_text = models.ManyToManyField(TextImageModul, related_name='section_text_image', blank=True)
 
 	def __str__(self):
 		return self.name
@@ -58,6 +88,9 @@ class Product(models.Model):
 
 	def __str__(self):
 		return self.name
+
+
+
 		
 
 

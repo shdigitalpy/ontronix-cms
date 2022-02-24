@@ -12,6 +12,8 @@ router.register('users', views.UserView, basename='User')
 router.register('gallery', views.GalleryView, basename='Gallery')
 router.register('file', views.FileView, basename='File')
 router.register('product', views.ProductView, basename='Product')
+router.register('section', views.SectionView, basename='Section')
+router.register('page', views.PageView, basename='Page')
 
 urlpatterns = [
     path('', include(router.urls)),

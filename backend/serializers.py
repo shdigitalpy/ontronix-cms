@@ -95,6 +95,83 @@ class ProductSerializer(serializers.ModelSerializer):
             )
 
 
+class ImageModulSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ImageModul
+        fields = (
+            'name',
+            'image',
+            'alt',
+           
+            )
+
+class TextModulSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TextModul
+        fields = (
+            'name',
+            'text',
+            'text_foreign',
+           
+            )
+
+class TextImageModulSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TextImageModul
+        fields = (
+            'name',
+            'text',
+            'text_foreign',
+            'image',
+            'link'
+           
+            )
+
+
+class SectionSerializer(serializers.ModelSerializer):
+
+    image = ImageModulSerializer(
+            many=True,
+            read_only=True
+                    )
+
+    text = TextModulSerializer(
+            many=True,
+            read_only=True
+                       )
+
+    image_text = TextImageModulSerializer(
+            many=True,
+            read_only=True
+        )
+
+    class Meta:
+        model = Section
+        fields = (
+            'name',
+            'sort',
+            'text',
+            'image',
+            'image_text'
+
+
+           
+            )
+
+class PageSerializer(serializers.ModelSerializer):
+
+    section = SectionSerializer(
+            many=True,
+            read_only=True
+                    )
+
+    class Meta:
+        model = Section
+        fields = (
+            'name',
+            'section',           
+            )
+
 
 class GallerySerializer(serializers.ModelSerializer):
 	class Meta:

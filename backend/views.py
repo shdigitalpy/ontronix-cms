@@ -39,6 +39,16 @@ class ProductView(viewsets.ModelViewSet):
 	permission_classes = (IsAuthenticated,)
 	authentication_classes = (TokenAuthentication,)
 
+class SectionView(viewsets.ModelViewSet):
+	queryset = Section.objects.all()
+	serializer_class = SectionSerializer
+	permission_classes = (IsAuthenticated,)
+	authentication_classes = (TokenAuthentication,)
+
+class PageView(viewsets.ModelViewSet):
+	queryset = Page.objects.all()
+	serializer_class = PageSerializer
+
 
 class GalleryView(viewsets.ModelViewSet):
 	queryset = Gallery.objects.all()

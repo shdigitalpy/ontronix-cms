@@ -7,6 +7,9 @@ admin.site.register(Page)
 admin.site.register(Section)
 admin.site.register(File)
 admin.site.register(Product)
+admin.site.register(ImageModul)
+admin.site.register(TextModul)
+admin.site.register(TextImageModul)
 
 
 admin.site.site_header = 'API Center'                    # default: "Django Administration"
