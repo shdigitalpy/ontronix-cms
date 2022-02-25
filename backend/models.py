@@ -7,6 +7,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils.timezone import now
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 PAYMENT_CHOICES = (
@@ -86,6 +87,7 @@ class Product(models.Model):
 	price = models.FloatField(null=True, blank=True,)
 	sort = models.IntegerField(null=True, blank=True)
 	short_description = models.TextField(max_length=2000, null=True, blank=True,)
+	long_description = RichTextUploadingField(config_name="default",blank=True, null=True)
 
 	def __str__(self):
 		return self.name
@@ -104,6 +106,26 @@ class Service(models.Model):
 
 	def __str__(self):
 		return self.name
+
+
+class Blog(models.Model):
+	title = models.CharField(max_length=255, null=True, blank=True,)
+	slug = models.SlugField(max_length=255,null=True, blank=True,)
+	thumbnail = models.ImageField(null=True, blank=True, upload_to="products")
+	thumbnail_alt = models.CharField(max_length=255, null=True, blank=True,)
+	meta_title = models.CharField(max_length=255, null=True, blank=True,)
+	meta_description = models.CharField(max_length=255, null=True, blank=True,)
+	sort = models.IntegerField(null=True, blank=True)
+	short_description = models.TextField(max_length=2000, null=True, blank=True,)
+	long_description = RichTextUploadingField(config_name="default",blank=True, null=True)
+	date_created = models.DateTimeField(auto_now_add=True)
+	date_updated = models.DateTimeField(auto_now=True)
+
+	def __str__(self):
+		return self.title
+
+
+
 
 
 

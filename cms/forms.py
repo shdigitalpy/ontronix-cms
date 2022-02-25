@@ -29,7 +29,9 @@ class ProduktForm(forms.ModelForm):
 			'thumbnail_alt',
 			'price',
 			'meta_title',
-			'meta_description'
+			'meta_description', 
+			'short_description',
+			'long_description'
 			
 			
 			
@@ -42,7 +44,8 @@ class ProduktForm(forms.ModelForm):
 			'meta_description' : "SEO-Beschrieb",
 			'price' : "Preis",
 			'sort' : "Sortierung",
-			'short_description': "Beschrieb",
+			'short_description': "Kurzbeschrieb",
+			'long_description' : "Produktbeschrieb",
 			'thumbnail' : "Bild",
 			'thumbnail_alt' : "Bildbeschrieb",
 
@@ -83,6 +86,7 @@ class ProduktForm(forms.ModelForm):
 				'class': 'form-control',
 				'required': 'true'
 				}),
+
 			
 		}
 

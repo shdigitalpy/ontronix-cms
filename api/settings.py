@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django.contrib.sites',
     'django_countries',
-    'phonenumber_field'
+    'phonenumber_field',
+    'ckeditor',
+    'ckeditor_uploader',
     
 ]
 
@@ -126,8 +128,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
 
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
-
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DATETIME_FORMAT': "%d.%m.%Y",
 }
 
 
@@ -176,6 +178,14 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, "ckeditor")
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+        'extraPlugins': 'codesnippet',
+    },
+}
 
 #Aws storage
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')

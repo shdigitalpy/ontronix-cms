@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, include,re_path
 from . import views
 from .views import *
 from rest_framework import routers
@@ -15,6 +15,7 @@ router.register('product', views.ProductView, basename='Product')
 router.register('section', views.SectionView, basename='Section')
 router.register('page', views.PageView, basename='Page')
 router.register('service', views.ServiceView, basename='Service')
+router.register('blog', views.BlogView, basename='Blog')
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -27,6 +28,7 @@ urlpatterns = [
     permission_classes=(permissions.AllowAny,),
     ), name='openapi-schema'),    
     path('register/', RegisterView.as_view(), name='auth_register'),
+    re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
  	
 ]
 

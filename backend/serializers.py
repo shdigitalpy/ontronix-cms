@@ -78,6 +78,25 @@ class FileSerializer(serializers.ModelSerializer):
             )
 
 
+class BlogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blog
+        fields = (
+            'id',
+            'title',
+            'slug',
+            'thumbnail',
+            'thumbnail_alt',
+            'meta_title',
+            'meta_description',
+            'sort',
+            'short_description',
+            'long_description',
+            'date_created',
+            'date_updated'
+        
+            )
+
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
@@ -91,7 +110,8 @@ class ProductSerializer(serializers.ModelSerializer):
             'meta_description',
             'price',
             'sort',
-            'short_description'
+            'short_description',
+            'long_description'
         
             )
 

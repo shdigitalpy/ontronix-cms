@@ -37,6 +37,9 @@ class ProductView(viewsets.ModelViewSet):
 	queryset = Product.objects.all()
 	serializer_class = ProductSerializer
 
+class BlogView(viewsets.ModelViewSet):
+	queryset = Blog.objects.all()
+	serializer_class = BlogSerializer
 
 class ServiceView(viewsets.ModelViewSet):
 	queryset = Service.objects.all()
