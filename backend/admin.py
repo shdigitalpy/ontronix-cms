@@ -12,6 +12,8 @@ admin.site.register(TextModul)
 admin.site.register(TextImageModul)
 admin.site.register(Service)
 admin.site.register(Blog)
+admin.site.register(Partner)
+admin.site.register(Job)
 
 admin.site.site_header = 'API Center'                    # default: "Django Administration"
 admin.site.index_title = 'Übersicht Module'                 # default: "Site administration"

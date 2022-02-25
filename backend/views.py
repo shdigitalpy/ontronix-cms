@@ -50,11 +50,18 @@ class SectionView(viewsets.ModelViewSet):
 	queryset = Section.objects.all()
 	serializer_class = SectionSerializer
 
+class PartnerView(viewsets.ModelViewSet):
+	queryset = Partner.objects.all()
+	serializer_class = PartnerSerializer
+
+class JobView(viewsets.ModelViewSet):
+	queryset = Job.objects.all()
+	serializer_class = JobSerializer
+
 class PageView(viewsets.ModelViewSet):
 	queryset = Page.objects.all()
 	serializer_class = PageSerializer
-	permission_classes = (IsAuthenticated,)
-	authentication_classes = (TokenAuthentication,)
+
 
 
 class GalleryView(viewsets.ModelViewSet):

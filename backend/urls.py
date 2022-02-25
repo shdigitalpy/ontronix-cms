@@ -16,6 +16,8 @@ router.register('section', views.SectionView, basename='Section')
 router.register('page', views.PageView, basename='Page')
 router.register('service', views.ServiceView, basename='Service')
 router.register('blog', views.BlogView, basename='Blog')
+router.register('partner', views.PartnerView, basename='Partner')
+router.register('job', views.JobView, basename='Job')
 
 urlpatterns = [
     path('', include(router.urls)),

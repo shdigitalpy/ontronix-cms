@@ -97,6 +97,16 @@ class BlogSerializer(serializers.ModelSerializer):
         
             )
 
+class JobSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Job
+        fields = (
+            'id',
+            'title',
+            'description',
+        
+            )
+
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
@@ -112,6 +122,20 @@ class ProductSerializer(serializers.ModelSerializer):
             'sort',
             'short_description',
             'long_description'
+        
+            )
+
+class PartnerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Partner
+        fields = (
+            'id',
+            'name',
+            'image',
+            'image_alt',
+            'sort', 
+            'description',
+            'short_name'
         
             )
 
@@ -187,6 +211,7 @@ class SectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Section
         fields = (
+            'id',
             'name',
             'sort',
             'text',

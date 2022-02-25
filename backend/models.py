@@ -125,14 +125,21 @@ class Blog(models.Model):
 		return self.title
 
 
+class Partner(models.Model):
+	name = models.CharField(max_length=255, null=True, blank=True,)
+	short_name = models.CharField(max_length=255, null=True, blank=True,)
+	image = models.ImageField(null=True, blank=True, upload_to="products")
+	image_alt = models.CharField(max_length=255, null=True, blank=True,)
+	sort = models.IntegerField(null=True, blank=True)
+	description = models.TextField(max_length=2000, null=True, blank=True,)
+
+	def __str__(self):
+		return self.name
 
 
+class Job(models.Model):
+	title = models.CharField(max_length=255, null=True, blank=True,)
+	description = RichTextUploadingField(config_name="default",blank=True, null=True)
 
-
-	
-	
-
-
-		
-
-
+	def __str__(self):
+		return self.title
