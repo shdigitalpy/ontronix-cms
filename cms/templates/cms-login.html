@@ -21,18 +21,6 @@
 <div style="padding-top:10rem" class="kontakt padding">
 
 
-	<!-- Message info -->
-    {% if messages %}
-    {% for message in messages %}
-
-    <div class="alert alert-warning" role="alert">
-      <button class="close" data-dismiss="alert"><small>x</small></button>
-      {{ message }}
-    </div>
-    {% endfor %}
-    {% endif %}
-    <!-- Message info end -->
-
     {% if user.is_authenticated %}
     <p>You are already logged in - <a href="{% url 'cms' %}">here you will get to the backend</a>
     <p>May you want to logout? - <a href="{% url 'logout_user' %}">Logout</a>
@@ -54,7 +42,7 @@
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Passwort" required>
       <br>
-      <div class="checkbox mb-3"><label><input type="checkbox" value="remember-me"> Login merken</label></div>
+      
       <button name="button" class="btn btn-lg btn-primary btn-block" type="submit">Anmelden</button>
       <p class="mt-5 mb-3 text-muted">&copy; {{ year }} SH Digital</p>
     </form>

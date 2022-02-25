@@ -90,6 +90,81 @@ class ProduktForm(forms.ModelForm):
 			
 		}
 
+class BlogForm(forms.ModelForm):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['thumbnail'].required = True
+
+	class Meta:
+		model = Blog
+		fields = (
+			'sort',
+			'title',
+			'slug',
+			'thumbnail', 
+			'thumbnail_alt',
+			'meta_title',
+			'meta_description', 
+			'short_description',
+			'long_description'
+			
+			
+			
+			)
+
+		labels = {
+			'title': "Name",
+			'slug' : "URL",
+			'meta_title' : "SEO-Titel",
+			'meta_description' : "SEO-Beschrieb",
+			'sort' : "Sortierung",
+			'short_description': "Kurzbeschrieb",
+			'long_description' : "Produktbeschrieb",
+			'thumbnail' : "Bild",
+			'thumbnail_alt' : "Bildbeschrieb",
+
+			
+		}
+
+		widgets = {
+			'name': forms.TextInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+			'slug': forms.TextInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+
+			'sort': forms.NumberInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+			
+			
+			'meta_title': forms.TextInput(attrs={
+				'class': 'form-control',
+				}),
+			'meta_description': forms.TextInput(attrs={
+				'class': 'form-control',
+				}),
+
+
+			'thumbnail_alt': forms.TextInput(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+			
+
+			'short_description': forms.Textarea(attrs={
+				'class': 'form-control',
+				'required': 'true'
+				}),
+
+			
+		}
+
+
 
 class ServiceForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
@@ -237,6 +312,64 @@ class FileForm(forms.ModelForm):
 
 		}
 
+
+class PartnerForm(forms.ModelForm):
+	class Meta:
+		model = Partner
+		fields = (
+			
+			'__all__'
+
+			)
+		labels = {
+
+		'name': "Name",
+		'short_name': "Kurzname",
+		'image': "Bild",
+		'image_alt': "Bildbeschrieb",
+		"sort": "Sortierung",
+		"description" : "Beschreibung-Partnerschaft"
+
+						
+		}
+
+		widgets = {
+
+		'name': forms.TextInput(attrs={
+				'class': 'form-control',
+				}),
+		'short_name': forms.TextInput(attrs={
+				'class': 'form-control',
+				}),
+		'sort': forms.NumberInput(attrs={
+				'class': 'form-control',
+				}),
+		'description': forms.TextInput(attrs={
+				'class': 'form-control',
+				}),
+	
+	
+
+		}
+
+class JobForm(forms.ModelForm):
+	class Meta:
+		model = Job
+		fields = (
+			'title',
+			'description'
+			)
+		labels = {
+		'title': "Titel",
+						
+		}
+
+		widgets = {
+
+		'title': forms.TextInput(attrs={
+				'class': 'form-control',
+				}),
+		}
 
 
 class GalleryForm(forms.ModelForm):

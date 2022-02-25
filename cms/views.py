@@ -96,101 +96,7 @@ def cms_pdf_edit(request, pk):
 				}
 	return render(request, 'cms-pdf-bearbeiten.html', context)
 
-@staff_member_required
-def cms_pages(request):
-	pages = Page.objects.all()
-	
-	context = {
-	"pages" : pages,
-	}
-	return render(request, 'cms-pages.html', context)
 
-@staff_member_required
-def cms_section_detail(request, pk):
-	section = get_object_or_404(Section, pk=pk)
-
-	context = {
-	"section" : section,
-	}
-	return render(request, 'cms-section-details.html', context)
-
-@staff_member_required
-def cms_module_detail(request, pk, module, section_pk):
-
-	if module == 'text_module':
-		module_final = get_object_or_404(TextModul, pk=pk)
-
-	elif module == 'image_module': 
-		module_final = get_object_or_404(ImageModul, pk=pk)
-
-	elif module == 'text_image_module': 
-		module_final = get_object_or_404(TextImageModul, pk=pk)
-
-	else:
-		print('Error')
-
-	context = {
-	"module_final" : module_final,
-	'section_pk' : section_pk,
-	'module' : module,
-	}
-	return render(request, 'cms-module-detail.html', context)
-
-@login_required
-def cms_module_bearbeiten(request, pk, module, section_pk):
-	
-	if module == 'text_module':
-		module_final = get_object_or_404(TextModul, pk=pk)
-
-	elif module == 'image_module': 
-		module_final = get_object_or_404(ImageModul, pk=pk)
-
-	elif module == 'text_image_module': 
-		module_final = get_object_or_404(TextImageModul, pk=pk)
-
-	else:
-		print('error')
-	
-	if request.method == "POST":
-		if module == 'text_module':
-			form = ModuleTextForm(request.POST or None, request.FILES or None, instance=module_final)
-
-		elif module == 'image_module': 
-			form = ModuleImageForm(request.POST or None, request.FILES or None, instance=module_final)
-
-		elif module == 'text_image_module': 
-			form = ModuleImageTextForm(request.POST or None, request.FILES or None, instance=module_final)
-
-		else:
-			print('error')
-		if form.is_valid():
-				form.save()					
-				return redirect('cms_module_detail', pk=pk, module=module, section_pk=section_pk)
-
-		else:
-			messages.error(request, "Error")
-	else: 
-		if module == 'text_module':
-			form = ModuleTextForm(request.POST or None, request.FILES or None, instance=module_final)
-
-		elif module == 'image_module': 
-			form = ModuleImageForm(request.POST or None, request.FILES or None, instance=module_final)
-
-		elif module == 'text_image_module': 
-			form = ModuleImageTextForm(request.POST or None, request.FILES or None, instance=module_final)
-
-		else:
-			print('error')
-
-
-	context = {
-		'form': form,
-		'module': module,
-		'section_pk': section_pk,
-		'pk' : pk,
-		
-				}
-	return render(request, 'cms-module-bearbeiten.html', context)
 
 #Produkte
 
@@ -382,11 +288,287 @@ def cms_gallery_image_delete(request, ppk, pk):
 	return redirect("cms_gallery_images", pk=ppk)
 
 
+
+#Blog
 @staff_member_required
-def cms_orders(request):
-	order = Order.objects.filter(ordered=True)
+def cms_blog(request):
+	
+	blog = Blog.objects.all()
+			
+
 	context = {
-			'order': order,
-			 }
-	return render(request, 'cms-bestellungen.html', context)
+		'blog': blog,
+	 }
+	return render(request, 'cms-blog.html', context)
+
+@staff_member_required
+def cms_blog_erfassen(request):
+	if request.method == "POST":
+		form = BlogForm(request.POST or None, request.FILES or None)
+		if form.is_valid():
+			form.save()	
+			return redirect('cms_blog')
+
+		else:
+			messages.error(request, "Error")
+
+	else: 
+		form = BlogForm()
+
+	context = {
+		'form': form,
+				}
+	return render(request, 'cms-blog-erfassen.html', context)
+
+
+@staff_member_required
+def cms_blog_bearbeiten(request, pk):
+	blog = get_object_or_404(Blog, pk=pk)
+	
+	if request.method == "POST":
+		form = BlogForm(request.POST or None, request.FILES or None, instance=blog)
+		if form.is_valid():
+			form.save()
+			return redirect('cms_blog')
+
+		else:
+			messages.error(request, "Error")
+	else: 
+		form = BlogForm(request.POST or None, request.FILES or None, instance=blog)
+	context = {
+		'form': form,
+		'blog': blog,
+		
+				}
+	return render(request, 'cms-blog-bearbeiten.html', context)
+
+@staff_member_required
+def cms_blog_löschen(request, pk):
+	eintrag = get_object_or_404(Blog, pk=pk)
+	eintrag.delete()
+	messages.info(request, "Der Blog wurde gelöscht.")
+	return redirect("cms_blog")	
+
+
+# pages and module
+
+@staff_member_required
+def cms_pages(request):
+	pages = Page.objects.all()
+	
+	context = {
+	"pages" : pages,
+	}
+	return render(request, 'cms-pages.html', context)
+
+@staff_member_required
+def cms_section_detail(request, pk):
+	section = get_object_or_404(Section, pk=pk)
+
+	context = {
+	"section" : section,
+	}
+	return render(request, 'cms-section-details.html', context)
+
+@staff_member_required
+def cms_module_detail(request, pk, module, section_pk):
+
+	if module == 'text_module':
+		module_final = get_object_or_404(TextModul, pk=pk)
+
+	elif module == 'image_module': 
+		module_final = get_object_or_404(ImageModul, pk=pk)
+
+	elif module == 'text_image_module': 
+		module_final = get_object_or_404(TextImageModul, pk=pk)
+
+	else:
+		print('Error')
+
+	context = {
+	"module_final" : module_final,
+	'section_pk' : section_pk,
+	'module' : module,
+	}
+	return render(request, 'cms-module-detail.html', context)
+
+@login_required
+def cms_module_bearbeiten(request, pk, module, section_pk):
+	
+	if module == 'text_module':
+		module_final = get_object_or_404(TextModul, pk=pk)
+
+	elif module == 'image_module': 
+		module_final = get_object_or_404(ImageModul, pk=pk)
+
+	elif module == 'text_image_module': 
+		module_final = get_object_or_404(TextImageModul, pk=pk)
+
+	else:
+		print('error')
+	
+	if request.method == "POST":
+		if module == 'text_module':
+			form = ModuleTextForm(request.POST or None, request.FILES or None, instance=module_final)
+
+		elif module == 'image_module': 
+			form = ModuleImageForm(request.POST or None, request.FILES or None, instance=module_final)
+
+		elif module == 'text_image_module': 
+			form = ModuleImageTextForm(request.POST or None, request.FILES or None, instance=module_final)
+
+		else:
+			print('error')
+		if form.is_valid():
+				form.save()					
+				return redirect('cms_module_detail', pk=pk, module=module, section_pk=section_pk)
+
+		else:
+			messages.error(request, "Error")
+	else: 
+		if module == 'text_module':
+			form = ModuleTextForm(request.POST or None, request.FILES or None, instance=module_final)
+
+		elif module == 'image_module': 
+			form = ModuleImageForm(request.POST or None, request.FILES or None, instance=module_final)
+
+		elif module == 'text_image_module': 
+			form = ModuleImageTextForm(request.POST or None, request.FILES or None, instance=module_final)
+
+		else:
+			print('error')
+
+
+	context = {
+		'form': form,
+		'module': module,
+		'section_pk': section_pk,
+		'pk' : pk,
+		
+				}
+	return render(request, 'cms-module-bearbeiten.html', context)
+
+
+#partner
+
+@staff_member_required
+def cms_partner(request):
+	partner = Partner.objects.all().order_by('sort')
+	
+	context = {
+	"partner" : partner,
+	}
+	return render(request, 'cms-partner.html', context)
+
+@staff_member_required
+def cms_partner_erfassen(request):
+	if request.method == "POST":
+		form = PartnerForm(request.POST or None, request.FILES or None)
+		if form.is_valid():
+			form.save()	
+			return redirect('cms_partner')
+
+		else:
+			messages.error(request, "Error")
+
+	else: 
+		form = PartnerForm()
+
+	context = {
+		'form': form,
+				}
+	return render(request, 'cms-partner-erfassen.html', context)
+
+
+@staff_member_required
+def cms_partner_bearbeiten(request, pk):
+	partner = get_object_or_404(Partner, pk=pk)
+	
+	if request.method == "POST":
+		form = PartnerForm(request.POST or None, request.FILES or None, instance=partner)
+		if form.is_valid():
+			form.save()
+			return redirect('cms_partner')
+
+		else:
+			messages.error(request, "Error")
+	else: 
+		form = PartnerForm(request.POST or None, request.FILES or None, instance=partner)
+	context = {
+		'form': form,
+		'partner': partner,
+		
+				}
+	return render(request, 'cms-partner-bearbeiten.html', context)
+
+@staff_member_required
+def cms_partner_löschen(request, pk):
+	eintrag = get_object_or_404(Partner, pk=pk)
+	eintrag.delete()
+	messages.info(request, "Der Partner wurde gelöscht.")
+	return redirect("cms_partner")	
+
+
+
+#karriere
+
+@staff_member_required
+def cms_jobs(request):
+	jobs = Job.objects.all()
+	
+	context = {
+	"jobs" : jobs,
+	}
+	return render(request, 'cms-jobs.html', context)
+
+
+@staff_member_required
+def cms_jobs_erfassen(request):
+	if request.method == "POST":
+		form = JobForm(request.POST or None, request.FILES or None)
+		if form.is_valid():
+			form.save()	
+			return redirect('cms_jobs')
+
+		else:
+			messages.error(request, "Error")
+
+	else: 
+		form = JobForm()
+
+	context = {
+		'form': form,
+				}
+	return render(request, 'cms-jobs-erfassen.html', context)
+
+
+@staff_member_required
+def cms_jobs_bearbeiten(request, pk):
+	job = get_object_or_404(Job, pk=pk)
+	
+	if request.method == "POST":
+		form = JobForm(request.POST or None, request.FILES or None, instance=job)
+		if form.is_valid():
+			form.save()
+			return redirect('cms_jobs')
+
+		else:
+			messages.error(request, "Error")
+	else: 
+		form = JobForm(request.POST or None, request.FILES or None, instance=job)
+	context = {
+		'form': form,
+		'job': job,
+		
+				}
+	return render(request, 'cms-jobs-bearbeiten.html', context)
+
+
+
+@staff_member_required
+def cms_jobs_löschen(request, pk):
+	eintrag = get_object_or_404(Job, pk=pk)
+	eintrag.delete()
+	messages.info(request, "Job wurde gelöscht.")
+	return redirect("cms_jobs")	
 

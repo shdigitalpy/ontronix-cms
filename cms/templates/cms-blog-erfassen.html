@@ -1,6 +1,6 @@
 {% extends 'base-cms.html' %}
 {% load static %}
-{% block title %}CMS Produkte bearbeiten{% endblock %}
+{% block title %}CMS Blog erfassen{% endblock %}
 
 {% block content %}
 
@@ -8,11 +8,9 @@
 			<div class="produkt">
 				
 			<div class="produkt-header">
-			<h2>PDF bearbeiten</h2><button class="btn btn-danger btn-exit">
-
-			<a href="{% url 'cms_partner' %}">Zurück <span class="fas fa-times"></span></a></button>
+			<h2>Blog erfassen</h2><button class="btn btn-danger btn-exit"><a href="{% url 'cms_blog' %}">Zurück <span class="fas fa-times"></span></a></button>
 			</div>
-				
+			<br>
 			<div class="form-group">
 		    
 		    <form method="POST" enctype="multipart/form-data">

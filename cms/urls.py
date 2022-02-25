@@ -32,14 +32,29 @@ urlpatterns = [
     path('cms/produkte/gallery/add/<int:pk>', views.cms_gallery_image_add, name='cms_gallery_image_add'),
     path('cms/produkte/gallery/löschen/<int:ppk>/<int:pk>', views.cms_gallery_image_delete, name='cms_gallery_image_delete'),
 
+    #partner
+    path('cms/partner', views.cms_partner, name='cms_partner'),
+    path('cms/partner/erfassen', views.cms_partner_erfassen, name='cms_partner_erfassen'),
+    path('cms/partner/bearbeiten/<int:pk>', views.cms_partner_bearbeiten, name='cms_partner_bearbeiten'),
+    path('cms/partner/löschen/<int:pk>', views.cms_partner_löschen, name='cms_partner_löschen'),
+
+
     #service
     path('cms/service', views.cms_service, name='cms_service'),
     path('cms/service/erfassen', views.cms_service_erfassen, name='cms_service_erfassen'),
     path('cms/service/bearbeiten/<int:pk>', views.cms_service_bearbeiten, name='cms_service_bearbeiten'),
     path('cms/service/löschen/<int:pk>', views.cms_service_löschen, name='cms_service_löschen'),
 
-    #orders
-    path('cms/bestellungen', views.cms_orders, name='cms_orders'),
+    #blog
+    path('cms/blog', views.cms_blog, name='cms_blog'),
+    path('cms/blog/erfassen', views.cms_blog_erfassen, name='cms_blog_erfassen'),
+    path('cms/blog/bearbeiten/<int:pk>', views.cms_blog_bearbeiten, name='cms_blog_bearbeiten'),
+    path('cms/blog/löschen/<int:pk>', views.cms_blog_löschen, name='cms_blog_löschen'),
 
+    #job
+    path('cms/jobs/', views.cms_jobs, name='cms_jobs'),
+    path('cms/job/erfassen', views.cms_jobs_erfassen, name='cms_jobs_erfassen'),
+    path('cms/job/bearbeiten/<int:pk>', views.cms_jobs_bearbeiten, name='cms_jobs_bearbeiten'),
+    path('cms/job/löschen/<int:pk>', views.cms_jobs_löschen, name='cms_jobs_löschen'),
 ]
 

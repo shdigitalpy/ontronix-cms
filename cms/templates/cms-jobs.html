@@ -1,0 +1,53 @@
+{% extends 'base-cms.html' %}
+{% load static %}
+{% block title %}Job{% endblock %}
+
+{% block content %}
+
+		
+			<div class="flexbox">
+				<div class="h2">Job</div>
+				
+			</div>
+
+			<div class="flexbox">
+				<a class="btn btn-secondary btn-sm mr-1" href="{% url 'cms_jobs_erfassen' %}">Erfassen</a>
+			</div>
+			
+
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+			    	<th scope="col"><br>ID</th>
+			    	<th scope="col"><br>Title</th>
+			    	<th scope="col">Bearbeiten</th>
+			       	<th scope="col">Löschen</th>      
+
+			    </tr>
+			  </thead>
+
+
+			  {% for data in jobs %}
+			  <tbody>
+			    <tr>
+			      <th scope="row">{{ data.id }}</th>
+			      <td>
+			      {{ data.title }}</form>
+			  		</td>
+			      
+			    <td><a href="{% url 'cms_jobs_bearbeiten' data.pk %}"><i style="color:var(--red)" class="far fa-edit"></i></a>
+			    </td>
+
+			    <td><a href="{% url 'cms_jobs_löschen' data.pk %}"><i style="color:var(--red)" class="far fa-trash-alt"></i></a>
+			    </td>
+
+
+			    </tr>
+			  </tbody>
+			  {% endfor %}
+
+			</table>
+
+			
+ {% endblock %}
+
