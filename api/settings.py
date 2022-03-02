@@ -97,7 +97,8 @@ ALLOWED_HOSTS = [
     'http://localhost:3030',
     'https://ontronix-cms.herokuapp.com/',
     'ontronix-cms.herokuapp.com/',
-    'https://ontronix.vercel.app/'
+    'https://ontronix.vercel.app/',
+    'ontronix.vercel.app/'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = False
@@ -108,7 +109,8 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3030',
     'https://ontronix-cms.herokuapp.com/',
     'ontronix-cms.herokuapp.com/',
-    'https://ontronix.vercel.app/'
+    'https://ontronix.vercel.app/',
+    'ontronix.vercel.app/'
 ]
 
 LOGIN_REDIRECT_URL = '/cms'
