@@ -17,11 +17,11 @@
 											
 
 						{% else %}
-						     <a class="btn btn-primary" href="{% url 'cms_gallery_image_add' product.pk %}">Bild hinzufügen</a>
+						     <a class="btn btn-primary" href="{% url 'cms_blog_gallery_image_add' blog.pk %}">Bild hinzufügen</a>
 						  
 							{% endif %}
 
-						<button class="btn btn-danger btn-exit"><a href="{% url 'cms_produkte' %}">Zurück <span class="fas fa-times"></span></a></button>
+						<button class="btn btn-danger btn-exit"><a href="{% url 'cms_blog' %}">Zurück <span class="fas fa-times"></span></a></button>
 
 			<div class="flexbox">
 				
@@ -51,7 +51,7 @@
 						     
 						     {{ x.alt }}
 						      
-						      <a href="{% url 'cms_gallery_image_delete' product.id x.id %}"><i style="color:var(--red)" class="far fa-trash-alt"></i>
+						      <a href="{% url 'cms_blog_gallery_image_delete' blog.id x.id %}"><i style="color:var(--red)" class="far fa-trash-alt"></i>
 								 </a>
 						   
 						    </div>

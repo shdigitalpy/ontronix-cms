@@ -15,21 +15,13 @@ COUNTRY_CHOICES = [
 
 
 class ProduktForm(forms.ModelForm):
-	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
-		self.fields['thumbnail'].required = True
-
 	class Meta:
 		model = Product
 		fields = (
 			'sort',
 			'name',
 			'slug',
-			'thumbnail', 
-			'thumbnail_alt',
 			'price',
-			'meta_title',
-			'meta_description', 
 			'short_description',
 			'long_description'
 			
@@ -46,8 +38,7 @@ class ProduktForm(forms.ModelForm):
 			'sort' : "Sortierung",
 			'short_description': "Kurzbeschrieb",
 			'long_description' : "Produktbeschrieb",
-			'thumbnail' : "Bild",
-			'thumbnail_alt' : "Bildbeschrieb",
+		
 
 			
 		}
@@ -74,12 +65,6 @@ class ProduktForm(forms.ModelForm):
 			'meta_description': forms.TextInput(attrs={
 				'class': 'form-control',
 				}),
-
-
-			'thumbnail_alt': forms.TextInput(attrs={
-				'class': 'form-control',
-				'required': 'true'
-				}),
 			
 
 			'short_description': forms.Textarea(attrs={
@@ -91,18 +76,12 @@ class ProduktForm(forms.ModelForm):
 		}
 
 class BlogForm(forms.ModelForm):
-	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
-		self.fields['thumbnail'].required = True
-
 	class Meta:
 		model = Blog
 		fields = (
 			'sort',
 			'title',
 			'slug',
-			'thumbnail', 
-			'thumbnail_alt',
 			'meta_title',
 			'meta_description', 
 			'short_description',
@@ -167,17 +146,14 @@ class BlogForm(forms.ModelForm):
 
 
 class ServiceForm(forms.ModelForm):
-	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
-		self.fields['thumbnail'].required = True
+
 
 	class Meta:
 		model = Service
 		fields = (
 			'sort',
 			'name',
-			'thumbnail', 
-			'thumbnail_alt',
+
 			'short_description'
 			
 			)
@@ -398,6 +374,53 @@ class GalleryForm(forms.ModelForm):
 				}),
 		}
 
+class ServiceGalleryForm(forms.ModelForm):
+	class Meta:
+		model = ServiceGallery
+		fields = (
+			
+			'image',
+			'alt'
+
+			)
+		labels = {
+
+		'image': "image",
+		'alt': "alt",
+						
+		}
+
+		widgets = {
+	
+			'image' : forms.FileInput(attrs={
+				'class': 'form-control',
+				}),
+			'alt': forms.TextInput(attrs={
+				'class': 'form-control',
+				}),
+		}
+
+class BlogGalleryForm(forms.ModelForm):
+	class Meta:
+		model = BlogGallery
+		fields = (
+			'image',
+			'alt'
+			)
+		labels = {
+		'image': "image",
+		'alt': "alt",
+						
+		}
+		widgets = {
+	
+			'image' : forms.FileInput(attrs={
+				'class': 'form-control',
+				}),
+			'alt': forms.TextInput(attrs={
+				'class': 'form-control',
+				}),
+		}
 
 class RegistrationForm(SignupForm):
 	username = forms.CharField(max_length=500, required=True, label="",

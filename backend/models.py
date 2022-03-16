@@ -16,13 +16,6 @@ PAYMENT_CHOICES = (
 	)
 
 
-class Gallery(models.Model):
-	image = models.ImageField(null=True, blank=True)
-	alt = models.CharField(max_length=255, null=True, blank=True,)
-
-	def __str__(self):
-		return self.alt
-
 class ImageModul(models.Model):
 	name = models.CharField(max_length=255, null=True, blank=True,)
 	image = models.ImageField(null=True, blank=True, upload_to="image_modul")
@@ -92,6 +85,19 @@ class Product(models.Model):
 	def __str__(self):
 		return self.name
 
+def get_gallery_filename(instance, filename):
+	    title = instance.product.name
+	    slug = slugify(title)
+	    return "gallery/%s-%s" % (slug, filename)
+
+class Gallery(models.Model):
+	product = models.ForeignKey(Product, related_name='product_gallery', default=None, on_delete=models.CASCADE)
+	image = models.ImageField(null=True, blank=True, upload_to=get_gallery_filename)
+	alt = models.CharField(max_length=255, null=True, blank=True,)
+
+	def __str__(self):
+	 	return self.alt
+
 class Service(models.Model):
 	name = models.CharField(max_length=255, null=True, blank=True,)
 	slug = models.SlugField(max_length=255,null=True, blank=True,)
@@ -107,6 +113,18 @@ class Service(models.Model):
 	def __str__(self):
 		return self.name
 
+def get_servicegallery_filename(instance, filename):
+	    title = instance.service.name
+	    slug = slugify(title)
+	    return "gallery/service/%s-%s" % (slug, filename)
+
+class ServiceGallery(models.Model):
+	service = models.ForeignKey(Service, related_name='service_gallery', default=None, on_delete=models.CASCADE)
+	image = models.ImageField(null=True, blank=True, upload_to=get_servicegallery_filename)
+	alt = models.CharField(max_length=255, null=True, blank=True,)
+
+	def __str__(self):
+	 	return self.alt
 
 class Blog(models.Model):
 	title = models.CharField(max_length=255, null=True, blank=True,)
@@ -123,6 +141,19 @@ class Blog(models.Model):
 
 	def __str__(self):
 		return self.title
+
+def get_bloggallery_filename(instance, filename):
+	    title = instance.blog.title
+	    slug = slugify(title)
+	    return "gallery/blog/%s-%s" % (slug, filename)
+
+class BlogGallery(models.Model):
+	blog = models.ForeignKey(Blog, related_name='blog_gallery', default=None, on_delete=models.CASCADE)
+	image = models.ImageField(null=True, blank=True, upload_to=get_bloggallery_filename)
+	alt = models.CharField(max_length=255, null=True, blank=True,)
+
+	def __str__(self):
+	 	return self.alt
 
 
 class Partner(models.Model):

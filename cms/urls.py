@@ -44,12 +44,20 @@ urlpatterns = [
     path('cms/service/erfassen', views.cms_service_erfassen, name='cms_service_erfassen'),
     path('cms/service/bearbeiten/<int:pk>', views.cms_service_bearbeiten, name='cms_service_bearbeiten'),
     path('cms/service/löschen/<int:pk>', views.cms_service_löschen, name='cms_service_löschen'),
+    path('cms/service/gallery/<int:pk>', views.cms_service_gallery_images, name='cms_service_gallery_images'),
+    path('cms/service/gallery/add/<int:pk>', views.cms_service_gallery_image_add, name='cms_service_gallery_image_add'),
+    path('cms/service/gallery/löschen/<int:ppk>/<int:pk>', views.cms_service_gallery_image_delete, name='cms_service_gallery_image_delete'),
+
 
     #blog
     path('cms/blog', views.cms_blog, name='cms_blog'),
     path('cms/blog/erfassen', views.cms_blog_erfassen, name='cms_blog_erfassen'),
     path('cms/blog/bearbeiten/<int:pk>', views.cms_blog_bearbeiten, name='cms_blog_bearbeiten'),
     path('cms/blog/löschen/<int:pk>', views.cms_blog_löschen, name='cms_blog_löschen'),
+    path('cms/blog/gallery/<int:pk>', views.cms_blog_gallery_images, name='cms_blog_gallery_images'),
+    path('cms/blog/gallery/add/<int:pk>', views.cms_blog_gallery_image_add, name='cms_blog_gallery_image_add'),
+    path('cms/blog/gallery/löschen/<int:ppk>/<int:pk>', views.cms_blog_gallery_image_delete, name='cms_blog_gallery_image_delete'),
+    
 
     #job
     path('cms/jobs/', views.cms_jobs, name='cms_jobs'),

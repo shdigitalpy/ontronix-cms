@@ -123,6 +123,7 @@ def cms_produkte(request):
 	context = {
 		'category': category,
 		'produkte': produkte,
+
 	 }
 	return render(request, 'cms-produkte.html', context)
 
@@ -241,7 +242,7 @@ def cms_service_löschen(request, pk):
 #Service END
 
 
-@login_required
+@staff_member_required
 def cms_gallery_images(request, pk):
 	product = get_object_or_404(Product, pk=pk)
 
@@ -255,7 +256,7 @@ def cms_gallery_images(request, pk):
 	return render(request, 'cms-gallery.html', context)
 
 
-@login_required
+@staff_member_required
 def cms_gallery_image_add(request, pk):
 
 	product = get_object_or_404(Product, pk=pk)
@@ -280,7 +281,7 @@ def cms_gallery_image_add(request, pk):
 
 	return render(request, 'cms-gallery-add.html', context)
 
-@login_required
+@staff_member_required
 def cms_gallery_image_delete(request, ppk, pk):
 	eintrag = get_object_or_404(Gallery, pk=pk)
 	eintrag.delete()
@@ -288,6 +289,58 @@ def cms_gallery_image_delete(request, ppk, pk):
 	return redirect("cms_gallery_images", pk=ppk)
 
 
+
+#service gallery start
+
+@staff_member_required
+def cms_service_gallery_images(request, pk):
+	service = get_object_or_404(Service, pk=pk)
+
+	gallery = ServiceGallery.objects.filter(service=service)
+
+	context = {
+		'gallery': gallery,
+		'service': service,
+				}
+
+	return render(request, 'cms-service-gallery.html', context)
+
+
+@staff_member_required
+def cms_service_gallery_image_add(request, pk):
+
+	service = get_object_or_404(Service, pk=pk)
+
+	if request.method == "POST":
+		form = ServiceGalleryForm(request.POST or None, request.FILES or None)
+		if form.is_valid():
+			form = form.save(commit=False)
+			form.service = service
+			form.save()
+			return redirect('cms_service_gallery_images', pk=pk)
+
+		else:
+			messages.error(request, "Error")
+	else: 
+		form = ServiceGalleryForm(request.POST or None, request.FILES or None)
+
+	context = {
+		'form': form,
+		'service': service,
+				}
+
+	return render(request, 'cms-service-gallery-add.html', context)
+
+
+@staff_member_required
+def cms_service_gallery_image_delete(request, ppk, pk):
+	eintrag = get_object_or_404(ServiceGallery, pk=pk)
+	eintrag.delete()
+	messages.info(request, "Das Bild wurde gelöscht.")
+	return redirect("cms_service_gallery_images", pk=ppk)
+
+
+#service gallery end
 
 #Blog
 @staff_member_required
@@ -349,6 +402,55 @@ def cms_blog_löschen(request, pk):
 	messages.info(request, "Der Blog wurde gelöscht.")
 	return redirect("cms_blog")	
 
+#blog gallery start
+
+@staff_member_required
+def cms_blog_gallery_images(request, pk):
+	blog = get_object_or_404(Blog, pk=pk)
+
+	gallery = BlogGallery.objects.filter(blog=blog)
+
+	context = {
+		'gallery': gallery,
+		'blog': blog,
+				}
+
+	return render(request, 'cms-blog-gallery.html', context)
+
+
+@staff_member_required
+def cms_blog_gallery_image_add(request, pk):
+	blog = get_object_or_404(Blog, pk=pk)
+
+	if request.method == "POST":
+		form = BlogGalleryForm(request.POST or None, request.FILES or None)
+		if form.is_valid():
+			form = form.save(commit=False)
+			form.blog = blog
+			form.save()
+			return redirect('cms_blog_gallery_images', pk=pk)
+
+		else:
+			messages.error(request, "Error")
+	else: 
+		form = BlogGalleryForm(request.POST or None, request.FILES or None)
+
+	context = {
+		'form': form,
+		'blog': blog,
+				}
+
+	return render(request, 'cms-blog-gallery-add.html', context)
+
+
+@staff_member_required
+def cms_blog_gallery_image_delete(request, ppk, pk):
+	eintrag = get_object_or_404(BlogGallery, pk=pk)
+	eintrag.delete()
+	messages.info(request, "Das Bild wurde gelöscht.")
+	return redirect("cms_blog_gallery_images", pk=ppk)
+
+#blog gallery end
 
 # pages and module
 

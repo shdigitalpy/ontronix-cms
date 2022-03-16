@@ -77,16 +77,29 @@ class FileSerializer(serializers.ModelSerializer):
            
             )
 
+class BlogGallerySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BlogGallery
+        fields = (
+            'id',
+            'image',
+            'alt',
+        
+            )
 
 class BlogSerializer(serializers.ModelSerializer):
+    blog_gallery = BlogGallerySerializer(
+            many=True,
+            read_only=True
+                    )
+
     class Meta:
         model = Blog
         fields = (
             'id',
             'title',
             'slug',
-            'thumbnail',
-            'thumbnail_alt',
+            'blog_gallery',
             'meta_title',
             'meta_description',
             'sort',
@@ -107,15 +120,29 @@ class JobSerializer(serializers.ModelSerializer):
         
             )
 
+class GallerySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Gallery
+        fields = (
+            'id',
+            'image',
+            'alt',
+        
+            )
+
 class ProductSerializer(serializers.ModelSerializer):
+    product_gallery = GallerySerializer(
+            many=True,
+            read_only=True
+                    )
+
     class Meta:
         model = Product
         fields = (
             'id',
             'name',
             'slug',
-            'thumbnail',
-            'thumbnail_alt',
+            'product_gallery',
             'meta_title',
             'meta_description',
             'price',
@@ -140,15 +167,28 @@ class PartnerSerializer(serializers.ModelSerializer):
             )
 
 
+class ServiceGallerySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServiceGallery
+        fields = (
+            'id',
+            'image',
+            'alt',
+        
+            )
+
 class ServiceSerializer(serializers.ModelSerializer):
+    service_gallery = ServiceGallerySerializer(
+            many=True,
+            read_only=True
+                    )
     class Meta:
         model = Service
         fields = (
             'id',
             'name',
             'slug',
-            'thumbnail',
-            'thumbnail_alt',
+            'service_gallery',
             'meta_title',
             'meta_description',
             'price',
@@ -236,13 +276,3 @@ class PageSerializer(serializers.ModelSerializer):
             'section',           
             )
 
-
-class GallerySerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Gallery
-		fields = (
-			'id',
-			'image',
-			'alt',
-		
-			)
