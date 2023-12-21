@@ -76,12 +76,11 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-
+WSGI_APPLICATION = 'api.wsgi.application'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -89,6 +88,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_brotli.middleware.BrotliMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'api.urls'
@@ -131,8 +132,6 @@ CORS_ORIGIN_WHITELIST = [
 
 LOGIN_REDIRECT_URL = '/cms'
 LOGOUT_REDIRECT_URL = '/cms/login'
-
-WSGI_APPLICATION = 'api.wsgi.application'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
