@@ -6,27 +6,50 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
-SECRET_KEY = config('SECRET_KEY')
+ALLOWED_HOSTS=['*']
 
-
-DEBUG = config('DEBUG')
 
 if config('STAGE') == 'dev':
+    #start
+
+    DEBUG = True
+
+    CSRF_COOKIE_SECURE = False
+    SECURE_SSL_REDIRECT = False
+
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+
+    #end
+
 else:
+    #start
+
+    DEBUG = False
+
+    CSRF_COOKIE_SECURE = True
+
+    SECURE_SSL_REDIRECT = True
+
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgresql-clear-21991',
-    }
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'postgresql-closed-10103',
+        }
     }
 
-# Application definition
+
+    db_from_env = dj_database_url.config(conn_max_age=600)
+    DATABASES['default'].update(db_from_env)
+
+
+    #end
+
+SECRET_KEY = config('SECRET_KEY')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -92,14 +115,6 @@ AUTHENTICATION_BACKENDS = [
     
 ]
 
-ALLOWED_HOSTS = [
-    'http://localhost:3000',
-    'http://localhost:3030',
-    'https://ontronix-cms.herokuapp.com/',
-    'ontronix-cms.herokuapp.com/',
-    'https://ontronix.vercel.app',
-    'ontronix.vercel.app'
-]
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
@@ -158,13 +173,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'de-ch'
 
 TIME_ZONE = 'Europe/Berlin'
 
 USE_I18N = True
 
-USE_L10N = False
+USE_L10N = True
 
 USE_TZ = True
 
@@ -204,7 +219,6 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_QUERYSTRING_AUTH = False
 
 django_heroku.settings(locals())
-
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
