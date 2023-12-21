@@ -131,8 +131,6 @@ CORS_ORIGIN_WHITELIST = [
 LOGIN_REDIRECT_URL = '/cms'
 LOGOUT_REDIRECT_URL = '/cms/login'
 
-ROOT_URLCONF = 'api.urls'
-
 WSGI_APPLICATION = 'api.wsgi.application'
 
 REST_FRAMEWORK = {
@@ -221,4 +219,3 @@ AWS_QUERYSTRING_AUTH = False
 django_heroku.settings(locals())
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
