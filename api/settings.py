@@ -129,7 +129,8 @@ CORS_ORIGIN_WHITELIST = [
     'https://ontronix.vercel.app',
     'ontronix.vercel.app',
     'ontronix-cms-be53ae90940c.herokuapp.com/',
-    'https://ontronix-cms-be53ae90940c.herokuapp.com/'
+    'https://ontronix-cms-be53ae90940c.herokuapp.com/',
+    'ontronix-cms-be53ae90940c.herokuapp.com'
 ]
 
 LOGIN_REDIRECT_URL = '/cms'
